@@ -14,7 +14,7 @@
 
 @implementation EditAlarmViewController
 
-@synthesize alarm, tableViewOutlet, settings, datePicker;
+@synthesize alarmId, tableViewOutlet, settings, datePicker, tapRecognizer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +28,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                            action:@selector(didTapAnywhere:)];
+    [self hidePicker];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1] resignFirstResponder];
+    [self hidePicker];
+    NSLog(@"Tap");
 }
 
 - (void)hidePicker {
@@ -36,7 +53,13 @@
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     [datePicker setFrame:CGRectMake(0.0f, height, 320.0f, 216.0f)];
     [UIView commitAnimations];
-    //[self keyboardWillHide:nil];
+    [self keyboardWillHide:nil];
+    NSLog(@"Hidden");
+}
+
+- (void)hidePickerStable {
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    [datePicker setFrame:CGRectMake(0.0f, height, 320.0f, 216.0f)];
 }
 
 - (void)showPicker {
@@ -45,24 +68,46 @@
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     [datePicker setFrame:CGRectMake(0.0f, height-236.0f, 320.0f, 216.0f)];
     [UIView commitAnimations];
-    //[self keyboardWillShow:nil];
+    [self keyboardWillShow:nil];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    NSLog(@"Tap aktiv");
+    [self.view addGestureRecognizer:tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    NSLog(@"Tap inaktiv");
+    [self.view removeGestureRecognizer:tapRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self performSelector:@selector(hidePickerStable) withObject:nil afterDelay:0.01];
  
     [self hidePicker];
-    [datePicker setHidden:YES];
+    
     NSLog(@"Hit");
     settings = [[NSMutableArray alloc] init];
     //[settings addObject:[[NSMutableArray alloc] initWithObjects:@"Display Name", @"Segue name", @"Cell identifier", nil]];
     NSMutableArray *group1 = [[NSMutableArray alloc] initWithObjects:@"", [[NSMutableArray alloc] init], nil];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Name", @"", @"Name", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Time", @"15:56", @"Time", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Signal", @"SignalSegue", @"DetailDisclosure", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Actions", @"ActionsSegue", @"Disclosure", nil]];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Alarm *thisAlarm = [appDelegate getAlarmWithId:alarmId];
+    
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Name", [thisAlarm name], @"Name", nil]];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    NSString *date = [formatter stringFromDate:[thisAlarm datetime]];
+    [datePicker setDate:[thisAlarm datetime]];
+    
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Time", date, @"Time", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", @"M _ T _ _ _ S S", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Signal", @"SignalSegue", @"DetailDisclosure", @"Default", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Actions", @"ActionsSegue", @"Disclosure", @"5", nil]];
     [settings addObject:group1];
 }
 
@@ -107,14 +152,19 @@
     }
     
     if ([CellIdentifier isEqualToString:@"Name"]) {
-        
+        ((UITextField *)[cell viewWithTag:1]).text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1];
     }
     else if ([CellIdentifier isEqualToString:@"Time"]) {
         cell.textLabel.text = @"Time";
+        cell.detailTextLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1];
     }
-    else
-        if ([CellIdentifier isEqualToString:@"Disclosure"]) {
+    else if ([CellIdentifier isEqualToString:@"Disclosure"]) {
         cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
+        cell.detailTextLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
+    }
+    else if ([CellIdentifier isEqualToString:@"DetailDisclosure"]) {
+        cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
+        cell.detailTextLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
     }
     
     return cell;

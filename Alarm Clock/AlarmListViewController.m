@@ -37,9 +37,18 @@
 {
     [super viewWillAppear:animated];
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableArray *alarmObjects = [[NSMutableArray alloc] initWithArray:[appDelegate alarms]];
+    
     alarms = [[NSMutableArray alloc] init];
-    [alarms addObject:[[NSMutableArray alloc] initWithObjects:@"Placeholder alarm", [NSNumber numberWithInt:123], @"15:46", nil]];
-    [alarms addObject:[[NSMutableArray alloc] initWithObjects:@"Another alarm", [NSNumber numberWithInt:123], @"18:45", nil]];
+    for(Alarm *aAlarm in alarmObjects) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        NSString *time = [formatter stringFromDate:[aAlarm datetime]];
+        [alarms addObject:[[NSMutableArray alloc] initWithObjects:[aAlarm name], [aAlarm localId], time, [aAlarm active], nil]];
+    }
+    
+    //[alarms addObject:[[NSMutableArray alloc] initWithObjects:@"Placeholder alarm", [NSNumber numberWithInt:123], @"15:46", [NSNumber numberWithInt:0], nil]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +93,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    if ([[[alarms objectAtIndex:indexPath.row] objectAtIndex:3] intValue] == 1) {
+        ((UISwitch *)[cell viewWithTag:1]).on = true;
+    }
+    else {
+        ((UISwitch *)[cell viewWithTag:1]).on = false;
+    }
     ((UILabel *)[cell viewWithTag:2]).text = [[alarms objectAtIndex:indexPath.row] objectAtIndex:0];
     ((UILabel *)[cell viewWithTag:3]).text = [[alarms objectAtIndex:indexPath.row] objectAtIndex:2];
     
@@ -111,7 +126,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"EditAlarmSegue"]) {
         EditAlarmViewController *dest = (EditAlarmViewController *)[[segue destinationViewController] topViewController];
-        dest.alarm = selectedAlarm;
+        dest.alarmId = [NSNumber numberWithInt:selectedAlarm];
         NSLog(@"Hit");
     }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD814ADF16D948800009F0DB /* AlarmClock.sql in Resources */ = {isa = PBXBuildFile; fileRef = DD814ADE16D948800009F0DB /* AlarmClock.sql */; };
+		DD814AE116D948D50009F0DB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */; };
+		DD814AE416D94C3D0009F0DB /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = DD814AE316D94C3D0009F0DB /* Alarm.m */; };
 		DDBB9DB116D7DD4900F3D688 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DB016D7DD4900F3D688 /* UIKit.framework */; };
 		DDBB9DB316D7DD4900F3D688 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DB216D7DD4900F3D688 /* Foundation.framework */; };
 		DDBB9DB516D7DD4900F3D688 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DB416D7DD4900F3D688 /* CoreGraphics.framework */; };
@@ -68,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD814ADE16D948800009F0DB /* AlarmClock.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmClock.sql; sourceTree = "<group>"; };
+		DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		DD814AE216D94C3D0009F0DB /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
+		DD814AE316D94C3D0009F0DB /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
 		DDBB9DAD16D7DD4900F3D688 /* Alarm Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alarm Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBB9DB016D7DD4900F3D688 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDBB9DB216D7DD4900F3D688 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD814AE116D948D50009F0DB /* libsqlite3.0.dylib in Frameworks */,
 				DDBB9DB116D7DD4900F3D688 /* UIKit.framework in Frameworks */,
 				DDBB9DB316D7DD4900F3D688 /* Foundation.framework in Frameworks */,
 				DDBB9DB516D7DD4900F3D688 /* CoreGraphics.framework in Frameworks */,
@@ -198,6 +206,7 @@
 		DDBB9DAF16D7DD4900F3D688 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */,
 				DDBB9DB016D7DD4900F3D688 /* UIKit.framework */,
 				DDBB9DB216D7DD4900F3D688 /* Foundation.framework */,
 				DDBB9DB416D7DD4900F3D688 /* CoreGraphics.framework */,
@@ -209,6 +218,9 @@
 		DDBB9DB616D7DD4900F3D688 /* Alarm Clock */ = {
 			isa = PBXGroup;
 			children = (
+				DD814ADE16D948800009F0DB /* AlarmClock.sql */,
+				DD814AE216D94C3D0009F0DB /* Alarm.h */,
+				DD814AE316D94C3D0009F0DB /* Alarm.m */,
 				DDBB9E4E16D8DFE100F3D688 /* Singleton */,
 				DDBB9E4716D8C93B00F3D688 /* Edit Alarm */,
 				DDBB9DF616D8237A00F3D688 /* arrow.png */,
@@ -442,6 +454,7 @@
 				DDBB9E3716D83A9100F3D688 /* OATestServer.rb in Resources */,
 				DDBB9E3816D83A9100F3D688 /* README in Resources */,
 				DDBB9E5316D8E0BC00F3D688 /* Singleton.txt in Resources */,
+				DD814ADF16D948800009F0DB /* AlarmClock.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +518,7 @@
 				DDBB9E4A16D8C95600F3D688 /* EditAlarmActionsViewController.m in Sources */,
 				DDBB9E4D16D8CF0900F3D688 /* EditAlarmEditActionViewController.m in Sources */,
 				DDBB9E5116D8DFFC00F3D688 /* Singleton.m in Sources */,
+				DD814AE416D94C3D0009F0DB /* Alarm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

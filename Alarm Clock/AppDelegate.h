@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "OAuthConsumer.h"
+#import <sqlite3.h>
+#include "Alarm.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    NSString *databaseName;
+	NSString *databasePath;
+    NSMutableArray *alarms;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) OAToken *accessToken;
+@property (nonatomic, retain) NSMutableArray *alarms;
+
+- (Alarm *)getAlarmWithId:(NSNumber *)alarmLocalId;
 
 @end

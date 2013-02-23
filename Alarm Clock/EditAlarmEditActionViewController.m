@@ -28,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
@@ -91,6 +90,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self performSelector:@selector(hidePickerStable) withObject:nil afterDelay:0.01];
     
     [self updateLabel];
     [picker setHidden:YES];
@@ -124,6 +124,11 @@
     [availableActions addObject:[[NSMutableArray alloc] initWithObjects:@"Turn on", @"Turnon", nil]];
     [availableActions addObject:[[NSMutableArray alloc] initWithObjects:@"Turn off", @"Turnoff", nil]];
     [availableActions addObject:[[NSMutableArray alloc] initWithObjects:@"Fade up in 30 mins", @"30minFade", nil]];
+}
+
+- (void)hidePickerStable {
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    [picker setFrame:CGRectMake(0.0f, height, 320.0f, 216.0f)];
 }
 
 - (void)apiTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {

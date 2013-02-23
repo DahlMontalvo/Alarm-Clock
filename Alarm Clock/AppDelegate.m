@@ -10,10 +10,23 @@
 
 @implementation AppDelegate
 
-@synthesize accessToken;
+@synthesize accessToken, alarms;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Setup some globals
+	databaseName = @"AlarmClock.sql";
+    
+	// Get the path to the documents directory and append the databaseName
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDir = [documentPaths objectAtIndex:0];
+	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+    
+	// Execute the "checkAndCreateDatabase" function
+	[self checkAndCreateDatabase];
+    
+    [self getAlarms];
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -21,6 +34,80 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     return YES;
+}
+
+- (Alarm *)getAlarmWithId:(NSNumber *)alarmLocalId {
+	// Init the animals Array
+	Alarm *alarm;
+    
+    for(Alarm *aAlarm in alarms) {
+        if ([aAlarm.localId intValue] == [alarmLocalId intValue])
+            alarm = aAlarm;
+    }
+    
+    return alarm;
+}
+
+- (void)getAlarms {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	alarms = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = "SELECT * FROM alarms";
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				// Read the data from the result row
+                NSNumber *aId = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 0)];
+				NSString *aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
+                NSString *date = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 3)];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; //this is the sqlite's format
+                NSDate *aDatetime = [formatter dateFromString:date];
+				NSNumber *aActive = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 2)];
+                
+				// Create a new animal object with the data from the database
+				Alarm *alarm = [[Alarm alloc] initWithName:aName localId:aId datetime:aDatetime active:aActive];
+                
+				// Add the animal object to the animals Array
+				[alarms addObject:alarm];
+                NSLog(@"Alarm: %@", alarm);
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+}
+
+- (void)checkAndCreateDatabase{
+	// Check if the SQL database has already been saved to the users phone, if not then copy it over
+	BOOL success;
+    
+	// Create a FileManager object, we will use this to check the status
+	// of the database and to copy it over if required
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+	// Check if the database has already been created in the users filesystem
+	success = [fileManager fileExistsAtPath:databasePath];
+    
+	// If the database already exists then return without doing anything
+	if(success) return;
+    
+	// If not then proceed to copy the database from the application to the users filesystem
+    
+	// Get the path to the database in the application package
+	NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:databaseName];
+    
+	// Copy the database from the package to the users filesystem
+	[fileManager copyItemAtPath:databasePathFromApp toPath:databasePath error:nil];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
