@@ -10,6 +10,8 @@
 
 @implementation AppDelegate
 
+@synthesize accessToken;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

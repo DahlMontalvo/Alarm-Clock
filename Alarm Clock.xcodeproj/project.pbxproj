@@ -18,13 +18,43 @@
 		DDBB9DC716D7DD4A00F3D688 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DC616D7DD4A00F3D688 /* Default-568h@2x.png */; };
 		DDBB9DCA16D7DD4A00F3D688 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DC816D7DD4A00F3D688 /* MainStoryboard_iPhone.storyboard */; };
 		DDBB9DCD16D7DD4A00F3D688 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DCB16D7DD4A00F3D688 /* MainStoryboard_iPad.storyboard */; };
-		DDBB9DD016D7DD4A00F3D688 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DCF16D7DD4A00F3D688 /* MasterViewController.m */; };
-		DDBB9DD316D7DD4A00F3D688 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DD216D7DD4A00F3D688 /* DetailViewController.m */; };
 		DDBB9DDB16D7DD4A00F3D688 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DDA16D7DD4A00F3D688 /* SenTestingKit.framework */; };
 		DDBB9DDC16D7DD4A00F3D688 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DB016D7DD4900F3D688 /* UIKit.framework */; };
 		DDBB9DDD16D7DD4A00F3D688 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB9DB216D7DD4900F3D688 /* Foundation.framework */; };
 		DDBB9DE516D7DD4A00F3D688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DE316D7DD4A00F3D688 /* InfoPlist.strings */; };
 		DDBB9DE816D7DD4A00F3D688 /* Alarm_ClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DE716D7DD4A00F3D688 /* Alarm_ClockTests.m */; };
+		DDBB9DF316D820E700F3D688 /* MainClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DF216D820E700F3D688 /* MainClockViewController.m */; };
+		DDBB9DF516D8222B00F3D688 /* BlackBoard4.png in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DF416D8222B00F3D688 /* BlackBoard4.png */; };
+		DDBB9DF716D8237A00F3D688 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9DF616D8237A00F3D688 /* arrow.png */; };
+		DDBB9DFA16D82D5400F3D688 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DF916D82D5400F3D688 /* SettingsViewController.m */; };
+		DDBB9DFD16D82E2E00F3D688 /* AlarmListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DFC16D82E2E00F3D688 /* AlarmListViewController.m */; };
+		DDBB9E0016D8359500F3D688 /* SettingsTelldusLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9DFF16D8359500F3D688 /* SettingsTelldusLiveViewController.m */; };
+		DDBB9E0316D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E0216D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.m */; };
+		DDBB9E3016D83A9100F3D688 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E0816D83A9000F3D688 /* NSMutableURLRequest+Parameters.m */; };
+		DDBB9E3116D83A9100F3D688 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E0A16D83A9000F3D688 /* NSString+URLEncoding.m */; };
+		DDBB9E3216D83A9100F3D688 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E0C16D83A9000F3D688 /* NSURL+Base.m */; };
+		DDBB9E3316D83A9100F3D688 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E0E16D83A9000F3D688 /* Base64Transcoder.c */; };
+		DDBB9E3416D83A9100F3D688 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E1016D83A9000F3D688 /* hmac.c */; };
+		DDBB9E3516D83A9100F3D688 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E1216D83A9000F3D688 /* sha1.c */; };
+		DDBB9E3616D83A9100F3D688 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E1B16D83A9000F3D688 /* OAPlaintextSignatureProvider.m */; };
+		DDBB9E3716D83A9100F3D688 /* OATestServer.rb in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9E2016D83A9000F3D688 /* OATestServer.rb */; };
+		DDBB9E3816D83A9100F3D688 /* README in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9E2416D83A9100F3D688 /* README */; };
+		DDBB9E3916D83A9100F3D688 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2516D83A9100F3D688 /* OARequestParameter.m */; };
+		DDBB9E3A16D83A9100F3D688 /* OAAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2616D83A9100F3D688 /* OAAttachment.m */; };
+		DDBB9E3B16D83A9100F3D688 /* OACall.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2716D83A9100F3D688 /* OACall.m */; };
+		DDBB9E3C16D83A9100F3D688 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2816D83A9100F3D688 /* OAConsumer.m */; };
+		DDBB9E3D16D83A9100F3D688 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2916D83A9100F3D688 /* OAHMAC_SHA1SignatureProvider.m */; };
+		DDBB9E3E16D83A9100F3D688 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2A16D83A9100F3D688 /* OADataFetcher.m */; };
+		DDBB9E3F16D83A9100F3D688 /* OAProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2B16D83A9100F3D688 /* OAProblem.m */; };
+		DDBB9E4016D83A9100F3D688 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2C16D83A9100F3D688 /* OAServiceTicket.m */; };
+		DDBB9E4116D83A9100F3D688 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2D16D83A9100F3D688 /* OAMutableURLRequest.m */; };
+		DDBB9E4216D83A9100F3D688 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2E16D83A9100F3D688 /* OAToken.m */; };
+		DDBB9E4316D83A9100F3D688 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E2F16D83A9100F3D688 /* OATokenManager.m */; };
+		DDBB9E4616D8B81700F3D688 /* EditAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E4516D8B81700F3D688 /* EditAlarmViewController.m */; };
+		DDBB9E4A16D8C95600F3D688 /* EditAlarmActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E4916D8C95600F3D688 /* EditAlarmActionsViewController.m */; };
+		DDBB9E4D16D8CF0900F3D688 /* EditAlarmEditActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E4C16D8CF0900F3D688 /* EditAlarmEditActionViewController.m */; };
+		DDBB9E5116D8DFFC00F3D688 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB9E5016D8DFFC00F3D688 /* Singleton.m */; };
+		DDBB9E5316D8E0BC00F3D688 /* Singleton.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBB9E5216D8E0BC00F3D688 /* Singleton.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,16 +83,73 @@
 		DDBB9DC616D7DD4A00F3D688 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DDBB9DC916D7DD4A00F3D688 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DDBB9DCC16D7DD4A00F3D688 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		DDBB9DCE16D7DD4A00F3D688 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		DDBB9DCF16D7DD4A00F3D688 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		DDBB9DD116D7DD4A00F3D688 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		DDBB9DD216D7DD4A00F3D688 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		DDBB9DD916D7DD4A00F3D688 /* Alarm ClockTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Alarm ClockTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBB9DDA16D7DD4A00F3D688 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DDBB9DE216D7DD4A00F3D688 /* Alarm ClockTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alarm ClockTests-Info.plist"; sourceTree = "<group>"; };
 		DDBB9DE416D7DD4A00F3D688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DDBB9DE616D7DD4A00F3D688 /* Alarm_ClockTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alarm_ClockTests.h; sourceTree = "<group>"; };
 		DDBB9DE716D7DD4A00F3D688 /* Alarm_ClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alarm_ClockTests.m; sourceTree = "<group>"; };
+		DDBB9DF116D820E700F3D688 /* MainClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainClockViewController.h; sourceTree = "<group>"; };
+		DDBB9DF216D820E700F3D688 /* MainClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainClockViewController.m; sourceTree = "<group>"; };
+		DDBB9DF416D8222B00F3D688 /* BlackBoard4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackBoard4.png; path = "../../AlarmClock-GitHub/AlarmClock-GitHub/alarm1/BlackBoard4.png"; sourceTree = "<group>"; };
+		DDBB9DF616D8237A00F3D688 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		DDBB9DF816D82D5400F3D688 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		DDBB9DF916D82D5400F3D688 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		DDBB9DFB16D82E2D00F3D688 /* AlarmListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmListViewController.h; sourceTree = "<group>"; };
+		DDBB9DFC16D82E2E00F3D688 /* AlarmListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmListViewController.m; sourceTree = "<group>"; };
+		DDBB9DFE16D8359500F3D688 /* SettingsTelldusLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTelldusLiveViewController.h; sourceTree = "<group>"; };
+		DDBB9DFF16D8359500F3D688 /* SettingsTelldusLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTelldusLiveViewController.m; sourceTree = "<group>"; };
+		DDBB9E0116D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAuthorizeTelldusLiveViewController.h; sourceTree = "<group>"; };
+		DDBB9E0216D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAuthorizeTelldusLiveViewController.m; sourceTree = "<group>"; };
+		DDBB9E0716D83A9000F3D688 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		DDBB9E0816D83A9000F3D688 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
+		DDBB9E0916D83A9000F3D688 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		DDBB9E0A16D83A9000F3D688 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		DDBB9E0B16D83A9000F3D688 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
+		DDBB9E0C16D83A9000F3D688 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
+		DDBB9E0E16D83A9000F3D688 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		DDBB9E0F16D83A9000F3D688 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		DDBB9E1016D83A9000F3D688 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
+		DDBB9E1116D83A9000F3D688 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		DDBB9E1216D83A9000F3D688 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		DDBB9E1316D83A9000F3D688 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		DDBB9E1416D83A9000F3D688 /* OAAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAttachment.h; sourceTree = "<group>"; };
+		DDBB9E1516D83A9000F3D688 /* OACall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACall.h; sourceTree = "<group>"; };
+		DDBB9E1616D83A9000F3D688 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		DDBB9E1716D83A9000F3D688 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
+		DDBB9E1816D83A9000F3D688 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		DDBB9E1916D83A9000F3D688 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		DDBB9E1A16D83A9000F3D688 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		DDBB9E1B16D83A9000F3D688 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
+		DDBB9E1C16D83A9000F3D688 /* OAProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAProblem.h; sourceTree = "<group>"; };
+		DDBB9E1D16D83A9000F3D688 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		DDBB9E1E16D83A9000F3D688 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
+		DDBB9E1F16D83A9000F3D688 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		DDBB9E2016D83A9000F3D688 /* OATestServer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = OATestServer.rb; sourceTree = "<group>"; };
+		DDBB9E2116D83A9100F3D688 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
+		DDBB9E2216D83A9100F3D688 /* OATokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OATokenManager.h; sourceTree = "<group>"; };
+		DDBB9E2316D83A9100F3D688 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		DDBB9E2416D83A9100F3D688 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DDBB9E2516D83A9100F3D688 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
+		DDBB9E2616D83A9100F3D688 /* OAAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAAttachment.m; sourceTree = "<group>"; };
+		DDBB9E2716D83A9100F3D688 /* OACall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACall.m; sourceTree = "<group>"; };
+		DDBB9E2816D83A9100F3D688 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
+		DDBB9E2916D83A9100F3D688 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		DDBB9E2A16D83A9100F3D688 /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OADataFetcher.m; sourceTree = "<group>"; };
+		DDBB9E2B16D83A9100F3D688 /* OAProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAProblem.m; sourceTree = "<group>"; };
+		DDBB9E2C16D83A9100F3D688 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServiceTicket.m; sourceTree = "<group>"; };
+		DDBB9E2D16D83A9100F3D688 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
+		DDBB9E2E16D83A9100F3D688 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
+		DDBB9E2F16D83A9100F3D688 /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
+		DDBB9E4416D8B81700F3D688 /* EditAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmViewController.h; sourceTree = "<group>"; };
+		DDBB9E4516D8B81700F3D688 /* EditAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmViewController.m; sourceTree = "<group>"; };
+		DDBB9E4816D8C95600F3D688 /* EditAlarmActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmActionsViewController.h; sourceTree = "<group>"; };
+		DDBB9E4916D8C95600F3D688 /* EditAlarmActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmActionsViewController.m; sourceTree = "<group>"; };
+		DDBB9E4B16D8CF0900F3D688 /* EditAlarmEditActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmEditActionViewController.h; sourceTree = "<group>"; };
+		DDBB9E4C16D8CF0900F3D688 /* EditAlarmEditActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmEditActionViewController.m; sourceTree = "<group>"; };
+		DDBB9E4F16D8DFFC00F3D688 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		DDBB9E5016D8DFFC00F3D688 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
+		DDBB9E5216D8E0BC00F3D688 /* Singleton.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Singleton.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,14 +209,19 @@
 		DDBB9DB616D7DD4900F3D688 /* Alarm Clock */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB9E4E16D8DFE100F3D688 /* Singleton */,
+				DDBB9E4716D8C93B00F3D688 /* Edit Alarm */,
+				DDBB9DF616D8237A00F3D688 /* arrow.png */,
+				DDBB9DF416D8222B00F3D688 /* BlackBoard4.png */,
 				DDBB9DBF16D7DD4A00F3D688 /* AppDelegate.h */,
 				DDBB9DC016D7DD4A00F3D688 /* AppDelegate.m */,
 				DDBB9DC816D7DD4A00F3D688 /* MainStoryboard_iPhone.storyboard */,
 				DDBB9DCB16D7DD4A00F3D688 /* MainStoryboard_iPad.storyboard */,
-				DDBB9DCE16D7DD4A00F3D688 /* MasterViewController.h */,
-				DDBB9DCF16D7DD4A00F3D688 /* MasterViewController.m */,
-				DDBB9DD116D7DD4A00F3D688 /* DetailViewController.h */,
-				DDBB9DD216D7DD4A00F3D688 /* DetailViewController.m */,
+				DDBB9DF116D820E700F3D688 /* MainClockViewController.h */,
+				DDBB9DF216D820E700F3D688 /* MainClockViewController.m */,
+				DDBB9DFB16D82E2D00F3D688 /* AlarmListViewController.h */,
+				DDBB9DFC16D82E2E00F3D688 /* AlarmListViewController.m */,
+				DDBB9E0416D83A3600F3D688 /* Settings */,
 				DDBB9DB716D7DD4900F3D688 /* Supporting Files */,
 			);
 			path = "Alarm Clock";
@@ -138,6 +230,7 @@
 		DDBB9DB716D7DD4900F3D688 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB9E0516D83A5700F3D688 /* OAuthConsumer */,
 				DDBB9DB816D7DD4900F3D688 /* Alarm Clock-Info.plist */,
 				DDBB9DB916D7DD4900F3D688 /* InfoPlist.strings */,
 				DDBB9DBC16D7DD4900F3D688 /* main.m */,
@@ -166,6 +259,105 @@
 				DDBB9DE316D7DD4A00F3D688 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDBB9E0416D83A3600F3D688 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9DF816D82D5400F3D688 /* SettingsViewController.h */,
+				DDBB9DF916D82D5400F3D688 /* SettingsViewController.m */,
+				DDBB9DFE16D8359500F3D688 /* SettingsTelldusLiveViewController.h */,
+				DDBB9DFF16D8359500F3D688 /* SettingsTelldusLiveViewController.m */,
+				DDBB9E0116D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.h */,
+				DDBB9E0216D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		DDBB9E0516D83A5700F3D688 /* OAuthConsumer */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9E0616D83A9000F3D688 /* Categories */,
+				DDBB9E0D16D83A9000F3D688 /* Crypto */,
+				DDBB9E1416D83A9000F3D688 /* OAAttachment.h */,
+				DDBB9E1516D83A9000F3D688 /* OACall.h */,
+				DDBB9E1616D83A9000F3D688 /* OAConsumer.h */,
+				DDBB9E1716D83A9000F3D688 /* OADataFetcher.h */,
+				DDBB9E1816D83A9000F3D688 /* OAHMAC_SHA1SignatureProvider.h */,
+				DDBB9E1916D83A9000F3D688 /* OAMutableURLRequest.h */,
+				DDBB9E1A16D83A9000F3D688 /* OAPlaintextSignatureProvider.h */,
+				DDBB9E1B16D83A9000F3D688 /* OAPlaintextSignatureProvider.m */,
+				DDBB9E1C16D83A9000F3D688 /* OAProblem.h */,
+				DDBB9E1D16D83A9000F3D688 /* OARequestParameter.h */,
+				DDBB9E1E16D83A9000F3D688 /* OAServiceTicket.h */,
+				DDBB9E1F16D83A9000F3D688 /* OASignatureProviding.h */,
+				DDBB9E2016D83A9000F3D688 /* OATestServer.rb */,
+				DDBB9E2116D83A9100F3D688 /* OAToken.h */,
+				DDBB9E2216D83A9100F3D688 /* OATokenManager.h */,
+				DDBB9E2316D83A9100F3D688 /* OAuthConsumer.h */,
+				DDBB9E2416D83A9100F3D688 /* README */,
+				DDBB9E2516D83A9100F3D688 /* OARequestParameter.m */,
+				DDBB9E2616D83A9100F3D688 /* OAAttachment.m */,
+				DDBB9E2716D83A9100F3D688 /* OACall.m */,
+				DDBB9E2816D83A9100F3D688 /* OAConsumer.m */,
+				DDBB9E2916D83A9100F3D688 /* OAHMAC_SHA1SignatureProvider.m */,
+				DDBB9E2A16D83A9100F3D688 /* OADataFetcher.m */,
+				DDBB9E2B16D83A9100F3D688 /* OAProblem.m */,
+				DDBB9E2C16D83A9100F3D688 /* OAServiceTicket.m */,
+				DDBB9E2D16D83A9100F3D688 /* OAMutableURLRequest.m */,
+				DDBB9E2E16D83A9100F3D688 /* OAToken.m */,
+				DDBB9E2F16D83A9100F3D688 /* OATokenManager.m */,
+			);
+			name = OAuthConsumer;
+			sourceTree = "<group>";
+		};
+		DDBB9E0616D83A9000F3D688 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9E0716D83A9000F3D688 /* NSMutableURLRequest+Parameters.h */,
+				DDBB9E0816D83A9000F3D688 /* NSMutableURLRequest+Parameters.m */,
+				DDBB9E0916D83A9000F3D688 /* NSString+URLEncoding.h */,
+				DDBB9E0A16D83A9000F3D688 /* NSString+URLEncoding.m */,
+				DDBB9E0B16D83A9000F3D688 /* NSURL+Base.h */,
+				DDBB9E0C16D83A9000F3D688 /* NSURL+Base.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DDBB9E0D16D83A9000F3D688 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9E0E16D83A9000F3D688 /* Base64Transcoder.c */,
+				DDBB9E0F16D83A9000F3D688 /* Base64Transcoder.h */,
+				DDBB9E1016D83A9000F3D688 /* hmac.c */,
+				DDBB9E1116D83A9000F3D688 /* hmac.h */,
+				DDBB9E1216D83A9000F3D688 /* sha1.c */,
+				DDBB9E1316D83A9000F3D688 /* sha1.h */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		DDBB9E4716D8C93B00F3D688 /* Edit Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9E4416D8B81700F3D688 /* EditAlarmViewController.h */,
+				DDBB9E4516D8B81700F3D688 /* EditAlarmViewController.m */,
+				DDBB9E4816D8C95600F3D688 /* EditAlarmActionsViewController.h */,
+				DDBB9E4916D8C95600F3D688 /* EditAlarmActionsViewController.m */,
+				DDBB9E4B16D8CF0900F3D688 /* EditAlarmEditActionViewController.h */,
+				DDBB9E4C16D8CF0900F3D688 /* EditAlarmEditActionViewController.m */,
+			);
+			name = "Edit Alarm";
+			sourceTree = "<group>";
+		};
+		DDBB9E4E16D8DFE100F3D688 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB9E4F16D8DFFC00F3D688 /* Singleton.h */,
+				DDBB9E5016D8DFFC00F3D688 /* Singleton.m */,
+				DDBB9E5216D8E0BC00F3D688 /* Singleton.txt */,
+			);
+			name = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +437,11 @@
 				DDBB9DC716D7DD4A00F3D688 /* Default-568h@2x.png in Resources */,
 				DDBB9DCA16D7DD4A00F3D688 /* MainStoryboard_iPhone.storyboard in Resources */,
 				DDBB9DCD16D7DD4A00F3D688 /* MainStoryboard_iPad.storyboard in Resources */,
+				DDBB9DF516D8222B00F3D688 /* BlackBoard4.png in Resources */,
+				DDBB9DF716D8237A00F3D688 /* arrow.png in Resources */,
+				DDBB9E3716D83A9100F3D688 /* OATestServer.rb in Resources */,
+				DDBB9E3816D83A9100F3D688 /* README in Resources */,
+				DDBB9E5316D8E0BC00F3D688 /* Singleton.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,8 +478,33 @@
 			files = (
 				DDBB9DBD16D7DD4900F3D688 /* main.m in Sources */,
 				DDBB9DC116D7DD4A00F3D688 /* AppDelegate.m in Sources */,
-				DDBB9DD016D7DD4A00F3D688 /* MasterViewController.m in Sources */,
-				DDBB9DD316D7DD4A00F3D688 /* DetailViewController.m in Sources */,
+				DDBB9DF316D820E700F3D688 /* MainClockViewController.m in Sources */,
+				DDBB9DFA16D82D5400F3D688 /* SettingsViewController.m in Sources */,
+				DDBB9DFD16D82E2E00F3D688 /* AlarmListViewController.m in Sources */,
+				DDBB9E0016D8359500F3D688 /* SettingsTelldusLiveViewController.m in Sources */,
+				DDBB9E0316D838E300F3D688 /* SettingsAuthorizeTelldusLiveViewController.m in Sources */,
+				DDBB9E3016D83A9100F3D688 /* NSMutableURLRequest+Parameters.m in Sources */,
+				DDBB9E3116D83A9100F3D688 /* NSString+URLEncoding.m in Sources */,
+				DDBB9E3216D83A9100F3D688 /* NSURL+Base.m in Sources */,
+				DDBB9E3316D83A9100F3D688 /* Base64Transcoder.c in Sources */,
+				DDBB9E3416D83A9100F3D688 /* hmac.c in Sources */,
+				DDBB9E3516D83A9100F3D688 /* sha1.c in Sources */,
+				DDBB9E3616D83A9100F3D688 /* OAPlaintextSignatureProvider.m in Sources */,
+				DDBB9E3916D83A9100F3D688 /* OARequestParameter.m in Sources */,
+				DDBB9E3A16D83A9100F3D688 /* OAAttachment.m in Sources */,
+				DDBB9E3B16D83A9100F3D688 /* OACall.m in Sources */,
+				DDBB9E3C16D83A9100F3D688 /* OAConsumer.m in Sources */,
+				DDBB9E3D16D83A9100F3D688 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				DDBB9E3E16D83A9100F3D688 /* OADataFetcher.m in Sources */,
+				DDBB9E3F16D83A9100F3D688 /* OAProblem.m in Sources */,
+				DDBB9E4016D83A9100F3D688 /* OAServiceTicket.m in Sources */,
+				DDBB9E4116D83A9100F3D688 /* OAMutableURLRequest.m in Sources */,
+				DDBB9E4216D83A9100F3D688 /* OAToken.m in Sources */,
+				DDBB9E4316D83A9100F3D688 /* OATokenManager.m in Sources */,
+				DDBB9E4616D8B81700F3D688 /* EditAlarmViewController.m in Sources */,
+				DDBB9E4A16D8C95600F3D688 /* EditAlarmActionsViewController.m in Sources */,
+				DDBB9E4D16D8CF0900F3D688 /* EditAlarmEditActionViewController.m in Sources */,
+				DDBB9E5116D8DFFC00F3D688 /* Singleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +695,7 @@
 				DDBB9DED16D7DD4A00F3D688 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDBB9DEE16D7DD4A00F3D688 /* Build configuration list for PBXNativeTarget "Alarm ClockTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +704,7 @@
 				DDBB9DF016D7DD4A00F3D688 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

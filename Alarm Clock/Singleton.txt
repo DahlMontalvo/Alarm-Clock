@@ -1,0 +1,3 @@
+Lista över sharedPrefs
+
+TelldusAccessToken          Access Token till Telldus
