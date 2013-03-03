@@ -14,7 +14,7 @@
 
 @implementation EditAlarmViewController
 
-@synthesize alarmId, tableViewOutlet, settings, datePicker, tapRecognizer;
+@synthesize alarmId, tableViewOutlet, settings, datePicker, tapRecognizer, alarmActive, alarmDate, alarmName, alarmRepeat, vc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,10 +25,24 @@
     return self;
 }
 
+- (void)updateRepeatLabel {
+    NSString *a,*b,*c,*d,*e,*f,*g;
+    if ([[alarmRepeat objectAtIndex:0] intValue] == 1) a = @"M"; else a = @"_";
+    if ([[alarmRepeat objectAtIndex:1] intValue] == 1) b = @"T"; else b = @"_";
+    if ([[alarmRepeat objectAtIndex:2] intValue] == 1) c = @"W"; else c = @"_";
+    if ([[alarmRepeat objectAtIndex:3] intValue] == 1) d = @"T"; else d = @"_";
+    if ([[alarmRepeat objectAtIndex:4] intValue] == 1) e = @"F"; else e = @"_";
+    if ([[alarmRepeat objectAtIndex:5] intValue] == 1) f = @"S"; else f = @"_";
+    if ([[alarmRepeat objectAtIndex:6] intValue] == 1) g = @"S"; else g = @"_";
+    NSString *text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",a,b,c,d,e,f,g, nil];
+    [[[[settings objectAtIndex:0] objectAtIndex:1] objectAtIndex:2] setObject:text atIndex:3];
+    [tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]].detailTextLabel.text = text;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    vc.values = alarmRepeat;
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
@@ -40,12 +54,18 @@
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                             action:@selector(didTapAnywhere:)];
     [self hidePicker];
+    [self updateRepeatLabel];
+    UITextField *textField = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]);
 }
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     [[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1] resignFirstResponder];
     [self hidePicker];
     NSLog(@"Tap");
+}
+
+- (IBAction)textFieldDidChange:(id)sender {
+    alarmName = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]).text;
 }
 
 - (void)hidePicker {
@@ -85,6 +105,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    alarmActive = [NSNumber numberWithInt:1];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Alarm *thisAlarm = [appDelegate getAlarmWithId:alarmId];
+    alarmDate = [thisAlarm datetime];
+    alarmName = [thisAlarm name];
+    alarmRepeat = [thisAlarm repeat];
     [self performSelector:@selector(hidePickerStable) withObject:nil afterDelay:0.01];
  
     [self hidePicker];
@@ -93,9 +119,6 @@
     settings = [[NSMutableArray alloc] init];
     //[settings addObject:[[NSMutableArray alloc] initWithObjects:@"Display Name", @"Segue name", @"Cell identifier", nil]];
     NSMutableArray *group1 = [[NSMutableArray alloc] initWithObjects:@"", [[NSMutableArray alloc] init], nil];
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    Alarm *thisAlarm = [appDelegate getAlarmWithId:alarmId];
     
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Name", [thisAlarm name], @"Name", nil]];
     
@@ -107,8 +130,9 @@
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Time", date, @"Time", nil]];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", @"M _ T _ _ _ S S", nil]];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Signal", @"SignalSegue", @"DetailDisclosure", @"Default", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Actions", @"ActionsSegue", @"Disclosure", @"5", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Tellstick Actions", @"ActionsSegue", @"Disclosure", @"5", nil]];
     [settings addObject:group1];
+    [self updateRepeatLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,16 +142,28 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Alarm *thisAlarm = [appDelegate getAlarmWithId:alarmId];
+    alarmRepeat = [thisAlarm repeat];
+    alarmName = [thisAlarm name];
+    alarmDate = [thisAlarm datetime];
+    alarmActive = [thisAlarm active];
+    [appDelegate getAlarms];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
+    alarmName = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]).text;
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate updateAlarmWithId:alarmId name:alarmName datetime:alarmDate active:alarmActive repeat:alarmRepeat];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)datePickerChanged:(id)sender {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
     [tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text = [dateFormatter stringFromDate:[datePicker date]];
+    alarmDate = [datePicker date];
 }
 
 #pragma mark Table view methods
@@ -163,6 +199,7 @@
         cell.detailTextLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
     }
     else if ([CellIdentifier isEqualToString:@"DetailDisclosure"]) {
+        //[self updateRepeatLabel];
         cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
         cell.detailTextLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
     }
@@ -175,6 +212,9 @@
     if ([[[tableView cellForRowAtIndexPath:indexPath] reuseIdentifier] isEqualToString:@"Disclosure"]) {
         [self performSegueWithIdentifier:[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1] sender:self];
     }
+    else if ([[[tableView cellForRowAtIndexPath:indexPath] reuseIdentifier] isEqualToString:@"DetailDisclosure"]) {
+        [self performSegueWithIdentifier:[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1] sender:self];
+    }
     else if ([[[tableView cellForRowAtIndexPath:indexPath] reuseIdentifier] isEqualToString:@"Time"]) {
         [self showPicker];
     }
@@ -182,8 +222,12 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"ActionsSegue"]) {
-        EditAlarmActionsViewController *vc = [segue destinationViewController];
-        vc.alarm = alarm;
+        EditAlarmActionsViewController *vc1 = [segue destinationViewController];
+        vc1.alarm = [alarmId intValue];
+    }
+    else if ([[segue identifier] isEqualToString:@"RepeatSegue"]) {
+        vc = [segue destinationViewController];
+        vc.values = alarmRepeat;
     }
 }
 

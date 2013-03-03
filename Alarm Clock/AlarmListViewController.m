@@ -48,6 +48,8 @@
         [alarms addObject:[[NSMutableArray alloc] initWithObjects:[aAlarm name], [aAlarm localId], time, [aAlarm active], nil]];
     }
     
+    [tableViewOutlet reloadData];
+    
     //[alarms addObject:[[NSMutableArray alloc] initWithObjects:@"Placeholder alarm", [NSNumber numberWithInt:123], @"15:46", [NSNumber numberWithInt:0], nil]];
 }
 
@@ -64,8 +66,26 @@
 - (IBAction)addButtonPressed:(id)sender {
     //Gör nytt alarm i databasen
     //Pusha vidare till edit alarm vc
-    selectedAlarm = 2; //Nytt alarm id
-    [self performSegueWithIdentifier:@"EditAlarmSegue" sender:self];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    selectedAlarm = [[appDelegate addAlarm] intValue]; //Nytt alarm id
+    NSLog(@"Selected: %i", selectedAlarm);
+    if (selectedAlarm != 0) {
+        [self performSegueWithIdentifier:@"EditAlarmSegue" sender:self];
+    }
+}
+
+- (IBAction)toggleSwitchToggled:(id)sender {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    int i = 0;
+    for (Alarm *aAlarm in [appDelegate alarms]) {
+        int val = 0;
+        if (((UISwitch *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]] viewWithTag:1]).on) {
+            val = 1;
+        }
+        [appDelegate setActive:[NSNumber numberWithInt:val] forAlarmWithId:[aAlarm localId]];
+        [[alarms objectAtIndex:i] setObject:[NSNumber numberWithInt:val] atIndex:3];
+        i++;
+    }
 }
 
 #pragma mark Table view methods
@@ -118,6 +138,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSLog(@"Delete");
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate deleteAlarmWithId:[[alarms objectAtIndex:indexPath.row] objectAtIndex:1]];
         [alarms removeObjectAtIndex:indexPath.row];
         [tableViewOutlet reloadData];
     }

@@ -13,14 +13,17 @@
     NSNumber *localId;
     NSDate *datetime;
     NSNumber *active;
+    NSMutableArray *repeat;
 }
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSNumber *localId;
 @property (nonatomic, retain) NSDate *datetime;
 @property (nonatomic, retain) NSNumber *active;
+@property (nonatomic, retain) NSMutableArray *repeat;
 
-- (id)initWithName:(NSString *)n localId:(NSNumber *)lI datetime:(NSDate *)d active:(NSNumber *)a;
+- (id)initWithName:(NSString *)n localId:(NSNumber *)lI datetime:(NSDate *)d active:(NSNumber *)a repeat:(NSMutableArray *)r;
 - (NSString *)description;
+//- (void)setActive:(NSNumber *)a;
 
 @end

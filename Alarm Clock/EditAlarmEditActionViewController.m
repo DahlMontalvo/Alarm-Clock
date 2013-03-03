@@ -68,12 +68,12 @@
 - (void)updateLabel {
     NSLog(@"Updating");
     NSString *device = [tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
-    NSString *action = [tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;
+    NSString *act = [tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;
     int offset = [((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] viewWithTag:2]).text intValue];
     NSLog(@"Offset: %i", offset);
     NSString *beforeAfter;
     if (offset == 0) {
-        finalizeLabel.text = [NSString stringWithFormat:@"%@ will %@ when the alarm sounds.", device, action];
+        finalizeLabel.text = [NSString stringWithFormat:@"%@ will %@ when the alarm sounds.", device, act];
     }
     else {
         if (offset < 0) {
@@ -83,7 +83,7 @@
         else {
             beforeAfter = @"after";
         }
-        finalizeLabel.text = [NSString stringWithFormat:@"%@ will %@ %i minutes %@ the alarm.", device, action, offset, beforeAfter];
+        finalizeLabel.text = [NSString stringWithFormat:@"%@ will %@ %i minutes %@ the alarm.", device, act, offset, beforeAfter];
     }
 }
 

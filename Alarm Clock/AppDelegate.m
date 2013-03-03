@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize accessToken, alarms;
+@synthesize accessToken, alarms, actions;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -26,6 +26,7 @@
 	[self checkAndCreateDatabase];
     
     [self getAlarms];
+    [self getActions];
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -33,6 +34,7 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+    NSLog(@"Alarms: %@", alarms);
     return YES;
 }
 
@@ -46,6 +48,165 @@
     }
     
     return alarm;
+}
+
+- (TelldusAction *)getTelldusActionWithId:(NSNumber *)actionLocalId {
+	// Init the animals Array
+	TelldusAction *action;
+    
+    for(TelldusAction *aAction in actions) {
+        if ([aAction.localId intValue] == [actionLocalId intValue])
+            action = aAction;
+    }
+    
+    return action;
+}
+
+- (void)setActive:(NSNumber *)a forAlarmWithId:(NSNumber *)i {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	alarms = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:@"UPDATE alarms SET active = %i WHERE id = %i",[a intValue], [i intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getAlarms];
+}
+
+- (void)updateAlarmWithId:(NSNumber *)localId name:(NSString *)name datetime:(NSDate *)date active:(NSNumber *)active repeat:(NSMutableArray *)repeat {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	alarms = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+#warning ÄNDRA DATUMFORMATET!!! FEL!!! ENDAST FÖR TEST!!!
+        NSString *dateString = [formatter stringFromDate:date];
+        NSLog(@"Date: %@ %@", dateString, date);
+		const char *sqlStatement = [[NSString stringWithFormat:@"UPDATE alarms SET name = '%@', time = '%@', active = '%i', repeat_mo = %i, repeat_tu = %i, repeat_we = %i, repeat_th = %i, repeat_fr = %i, repeat_sa = %i, repeat_su = %i WHERE id = %i",
+                                     name,
+                                     dateString,
+                                     [active intValue],
+                                     [[repeat objectAtIndex:0] intValue],
+                                     [[repeat objectAtIndex:1] intValue],
+                                     [[repeat objectAtIndex:2] intValue],
+                                     [[repeat objectAtIndex:3] intValue],
+                                     [[repeat objectAtIndex:4] intValue],
+                                     [[repeat objectAtIndex:5] intValue],
+                                     [[repeat objectAtIndex:6] intValue],
+                                     [localId intValue]] UTF8String];
+        NSLog(@"HERE: %s", sqlStatement);
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getAlarms];
+}
+
+- (void)deleteAlarmWithId:(NSNumber *)alarmLocalId {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	alarms = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:@"DELETE FROM alarms WHERE id = %i", [alarmLocalId intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getAlarms];
+}
+
+- (NSNumber *)addAlarm {
+    NSNumber *Id = 0;
+    
+    // Setup the database object
+	sqlite3 *database;
+    
+    int randomInt = arc4random() % 10000000 + 489823;
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:@"INSERT INTO alarms (name, active, time, signal) VALUES ('%i', 1, '2013-01-01 00:01:00', 'Default')", randomInt] UTF8String];
+		sqlite3_stmt *compiledStatement;
+        sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL);
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+        }
+		sqlite3_finalize(compiledStatement);
+        
+        
+        // Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement2 = [[NSString stringWithFormat:@"SELECT * FROM alarms WHERE name = '%i'", randomInt] UTF8String];
+		sqlite3_stmt *compiledStatement2;
+		if(sqlite3_prepare_v2(database, sqlStatement2, -1, &compiledStatement2, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement2) == SQLITE_ROW) {
+                Id = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement2, 0)];
+                NSLog(@"ID: %@", Id);
+			}
+		}
+		sqlite3_finalize(compiledStatement2);
+        
+        const char *sqlStatement3 = [[NSString stringWithFormat:@"UPDATE alarms SET name = 'Alarm' WHERE id = %i", [Id intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement3;
+		sqlite3_prepare_v2(database, sqlStatement3, -1, &compiledStatement3, NULL);
+        while(sqlite3_step(compiledStatement3) == SQLITE_ROW) {
+        }
+		sqlite3_finalize(compiledStatement3);
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getAlarms];
+    NSLog(@"Alarms: %@", alarms);
+    return Id;
 }
 
 - (void)getAlarms {
@@ -72,12 +233,57 @@
                 NSDate *aDatetime = [formatter dateFromString:date];
 				NSNumber *aActive = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 2)];
                 
+                NSMutableArray *repeat = [[NSMutableArray alloc] init];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 4)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 5)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 6)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 7)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 8)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 9)]];
+                [repeat addObject:[NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 10)]];
+                
 				// Create a new animal object with the data from the database
-				Alarm *alarm = [[Alarm alloc] initWithName:aName localId:aId datetime:aDatetime active:aActive];
+				Alarm *alarm = [[Alarm alloc] initWithName:aName localId:aId datetime:aDatetime active:aActive repeat:repeat];
                 
 				// Add the animal object to the animals Array
 				[alarms addObject:alarm];
-                NSLog(@"Alarm: %@", alarm);
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+}
+
+- (void)getActions {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	actions = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = "SELECT * FROM actions";
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				// Read the data from the result row
+                NSNumber *aId = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 0)];
+                NSNumber *aTelldusId = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 1)];
+				NSString *aTelldusName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)];
+                NSNumber *aOffset = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 3)];
+				NSString *aAction = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
+                NSNumber *aAlarmId = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement, 5)];
+				
+                // Create a new animal object with the data from the database
+				TelldusAction *action = [[TelldusAction alloc] initWithTelldusDeviceId:aTelldusId telldusDeviceName:aTelldusName action:aAction offset:aOffset localId:aId alarmId:aAlarmId];
+                
+				// Add the animal object to the animals Array
+				[actions addObject:action];
 			}
 		}
 		// Release the compiled statement from memory

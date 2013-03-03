@@ -39,6 +39,7 @@
     //[settings addObject:[[NSMutableArray alloc] initWithObjects:@"Display Name", @"Segue name", @"Cell identifier", nil]];
     NSMutableArray *group1 = [[NSMutableArray alloc] initWithObjects:@"General", [[NSMutableArray alloc] init], nil];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Authorize", @"AuthorizeTelldusLive", @"Disclosure", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Schedule in Telldus Live!", @"ScheduleInTelldusLive", @"Checkmark", @"ScheduleInTelldusLive", nil]];
     [settings addObject:group1];
 }
 
@@ -77,14 +78,40 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
+    if ([CellIdentifier isEqualToString:@"Disclosure"]) {
+        cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
+    }
+    else if ([CellIdentifier isEqualToString:@"Checkmark"]) {
+        cell.textLabel.text = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:0];
+        NSString *key = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
+        NSLog(@"Key: %@", key);
+        if ([[[[Singleton sharedSingleton] sharedPrefs] objectForKey:key] intValue] == 1) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        NSLog(@"int: %i", [[[[Singleton sharedSingleton] sharedPrefs] objectForKey:key] intValue]);
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self performSegueWithIdentifier:[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1] sender:self];
+    if ([[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:2] isEqualToString:@"Disclosure"]) {
+        [self performSegueWithIdentifier:[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:1] sender:self];
+    }
+    else if ([[[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:2] isEqualToString:@"Checkmark"]) {
+        NSString *key = [[[[settings objectAtIndex:indexPath.section] objectAtIndex:1] objectAtIndex:indexPath.row] objectAtIndex:3];
+        NSLog(@"Key: %@", key);
+        if ([tableViewOutlet cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryCheckmark) {
+            [tableViewOutlet cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+            [[[Singleton sharedSingleton] sharedPrefs] setObject:[NSNumber numberWithInt:0] forKey:key];
+        }
+        else {
+            [tableViewOutlet cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+            [[[Singleton sharedSingleton] sharedPrefs] setObject:[NSNumber numberWithInt:1] forKey:key];
+        }
+        [[[Singleton sharedSingleton] sharedPrefs] synchronize];
+    }
 }
 
 @end

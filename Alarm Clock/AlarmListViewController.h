@@ -18,6 +18,6 @@
 
 - (IBAction)doneButtonPressed:(id)sender;
 - (IBAction)addButtonPressed:(id)sender;
-
+- (IBAction)toggleSwitchToggled:(id)sender;
 
 @end

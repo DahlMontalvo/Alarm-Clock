@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Singleton.h"
 
 @interface SettingsTelldusLiveViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
