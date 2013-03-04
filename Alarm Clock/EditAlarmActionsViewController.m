@@ -14,7 +14,7 @@
 
 @implementation EditAlarmActionsViewController
 
-@synthesize alarm, tableViewOutlet, actions;
+@synthesize alarm, tableViewOutlet, actions, appDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,8 +34,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    actions = [[NSMutableArray alloc] init];
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    actions = [appDelegate actions];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +65,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [[actions objectAtIndex:indexPath.row] objectAtIndex:0];
+    NSString *string = [NSString stringWithFormat:@"%@ %@", [(TelldusAction *)[actions objectAtIndex:indexPath.row] action], [[actions objectAtIndex:indexPath.row] telldusDeviceName]];
+    
+    cell.textLabel.text = string;
     
     return cell;
 }
@@ -82,7 +84,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSLog(@"Delete");
-        [actions removeObjectAtIndex:indexPath.row];
+        [appDelegate deleteActionWithId:[[actions objectAtIndex:indexPath.row] localId]];
+        actions = [appDelegate actions];
         [tableViewOutlet reloadData];
     }
 }
@@ -92,7 +95,8 @@
 }
 
 - (IBAction)addButtonPressed:(id)sender {
-    [actions addObject:[[NSMutableArray alloc] initWithObjects:@"Turn on 'taklampa' 5 minutes before the alarm", [NSNumber numberWithInt:124], nil]];
+    [appDelegate addActionForAlarm:[NSNumber numberWithInt:alarm]];
+    actions = [appDelegate actions];
     [tableViewOutlet reloadData];
 }
 

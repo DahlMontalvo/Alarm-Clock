@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD06650A16E3F2190032D364 /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD06650916E3F2190032D364 /* AlarmViewController.m */; };
+		DD06650C16E496F70032D364 /* TestSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = DD06650B16E496F70032D364 /* TestSound.wav */; };
+		DD06650E16E498900032D364 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06650D16E498900032D364 /* AVFoundation.framework */; };
 		DD814ADF16D948800009F0DB /* AlarmClock.sql in Resources */ = {isa = PBXBuildFile; fileRef = DD814ADE16D948800009F0DB /* AlarmClock.sql */; };
 		DD814AE116D948D50009F0DB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */; };
 		DD814AE416D94C3D0009F0DB /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = DD814AE316D94C3D0009F0DB /* Alarm.m */; };
@@ -73,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD06650816E3F2190032D364 /* AlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmViewController.h; sourceTree = "<group>"; };
+		DD06650916E3F2190032D364 /* AlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmViewController.m; sourceTree = "<group>"; };
+		DD06650B16E496F70032D364 /* TestSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TestSound.wav; sourceTree = "<group>"; };
+		DD06650D16E498900032D364 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DD814ADE16D948800009F0DB /* AlarmClock.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmClock.sql; sourceTree = "<group>"; };
 		DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DD814AE216D94C3D0009F0DB /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
@@ -170,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD06650E16E498900032D364 /* AVFoundation.framework in Frameworks */,
 				DD814AE116D948D50009F0DB /* libsqlite3.0.dylib in Frameworks */,
 				DDBB9DB116D7DD4900F3D688 /* UIKit.framework in Frameworks */,
 				DDBB9DB316D7DD4900F3D688 /* Foundation.framework in Frameworks */,
@@ -193,6 +201,10 @@
 		DDBB9DA416D7DD4900F3D688 = {
 			isa = PBXGroup;
 			children = (
+				DD06650D16E498900032D364 /* AVFoundation.framework */,
+				DD06650B16E496F70032D364 /* TestSound.wav */,
+				DD06650816E3F2190032D364 /* AlarmViewController.h */,
+				DD06650916E3F2190032D364 /* AlarmViewController.m */,
 				DDBB9DB616D7DD4900F3D688 /* Alarm Clock */,
 				DDBB9DE016D7DD4A00F3D688 /* Alarm ClockTests */,
 				DDBB9DAF16D7DD4900F3D688 /* Frameworks */,
@@ -465,6 +477,7 @@
 				DDBB9E3816D83A9100F3D688 /* README in Resources */,
 				DDBB9E5316D8E0BC00F3D688 /* Singleton.txt in Resources */,
 				DD814ADF16D948800009F0DB /* AlarmClock.sql in Resources */,
+				DD06650C16E496F70032D364 /* TestSound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +544,7 @@
 				DD814AE416D94C3D0009F0DB /* Alarm.m in Sources */,
 				DD814AE716DA269F0009F0DB /* EditAlarmRepeatViewController.m in Sources */,
 				DDA627FC16DA8F110054BB8B /* TelldusAction.m in Sources */,
+				DD06650A16E3F2190032D364 /* AlarmViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

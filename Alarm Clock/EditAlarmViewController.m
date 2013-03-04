@@ -55,7 +55,7 @@
                                                             action:@selector(didTapAnywhere:)];
     [self hidePicker];
     [self updateRepeatLabel];
-    UITextField *textField = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]);
+    //UITextField *textField = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]);
 }
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
@@ -128,11 +128,12 @@
     [datePicker setDate:[thisAlarm datetime]];
     
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Time", date, @"Time", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", @"M _ T _ _ _ S S", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", @"_ _ _ _ _ _ _ _", nil]];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Signal", @"SignalSegue", @"DetailDisclosure", @"Default", nil]];
-    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Tellstick Actions", @"ActionsSegue", @"Disclosure", @"5", nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Tellstick Actions", @"ActionsSegue", @"Disclosure", [NSString stringWithFormat:@"%i", [[appDelegate actions] count]], nil]];
     [settings addObject:group1];
     [self updateRepeatLabel];
+    [tableViewOutlet reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,6 +157,7 @@
     alarmName = ((UITextField *)[[tableViewOutlet cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1]).text;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate updateAlarmWithId:alarmId name:alarmName datetime:alarmDate active:alarmActive repeat:alarmRepeat];
+    NSLog(@"Här");
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

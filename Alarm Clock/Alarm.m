@@ -10,7 +10,7 @@
 
 @implementation Alarm
 
-@synthesize name, localId, datetime, active;
+@synthesize name, localId, datetime, active, repeat;
 
 -(id)initWithName:(NSString *)n localId:(NSNumber *)lI datetime:(NSDate *)d active:(NSNumber *)a repeat:(NSMutableArray *)r {
 	self.name = n;

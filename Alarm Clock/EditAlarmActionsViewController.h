@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface EditAlarmActionsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     int alarm;
@@ -14,6 +15,7 @@
 
 @property (nonatomic, assign) int alarm;
 @property (nonatomic, retain) NSMutableArray *actions;
+@property (nonatomic, retain) AppDelegate *appDelegate;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViewOutlet;
 

@@ -35,7 +35,32 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     NSLog(@"Alarms: %@", alarms);
+    
+    UILocalNotification *localNotif =
+    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    
+    [self receivedNotif:localNotif application:application];
+    
     return YES;
+}
+
+- (void)receivedNotif:(UILocalNotification *)notif application:(UIApplication *)application {
+    if (notif) {
+        NSLog(@"Did receive local notif");
+        //NSString *itemName = [notif.userInfo objectForKey:@"AlarmName"];
+        
+        AlarmViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AlarmViewController"];
+        
+        /*AlarmDidSoundViewController *alarmDidSoundViewController = (AlarmDidSoundViewController *)[[AlarmDidSoundViewController alloc] initWithNibName:@"AlarmDidSoundViewController" bundle:nil];
+        */
+        UINavigationController *nvcontrol = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nvcontrol;
+        [[self window] makeKeyAndVisible];
+    }
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [self receivedNotif:notification application:application];
 }
 
 - (Alarm *)getAlarmWithId:(NSNumber *)alarmLocalId {
@@ -133,6 +158,36 @@
     
     //Uppdatera alarmslistan
     [self getAlarms];
+    
+    [self scheduleAlarmWithId:localId];
+}
+
+- (void)deleteActionWithId:(NSNumber *)actionLocalId {
+    // Setup the database object
+	sqlite3 *database;
+    
+	// Init the animals Array
+	alarms = [[NSMutableArray alloc] init];
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:@"DELETE FROM actions WHERE id = %i", [actionLocalId intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getActions];
 }
 
 - (void)deleteAlarmWithId:(NSNumber *)alarmLocalId {
@@ -173,8 +228,13 @@
     
 	// Open the database from the users filessytem
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+        NSString *dateString;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        dateString = [formatter stringFromDate:[NSDate date]];
 		// Setup the SQL Statement and compile it for faster access
-		const char *sqlStatement = [[NSString stringWithFormat:@"INSERT INTO alarms (name, active, time, signal) VALUES ('%i', 1, '2013-01-01 00:01:00', 'Default')", randomInt] UTF8String];
+		const char *sqlStatement = [[NSString stringWithFormat:@"INSERT INTO alarms (name, active, time, signal) VALUES ('%i', 1, '%@:00', 'Default')", randomInt, dateString] UTF8String];
+        NSLog(@"%s", sqlStatement);
 		sqlite3_stmt *compiledStatement;
         sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL);
         while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
@@ -205,7 +265,103 @@
     
     //Uppdatera alarmslistan
     [self getAlarms];
-    NSLog(@"Alarms: %@", alarms);
+    return Id;
+}
+
+-(void)scheduleAlarmWithId:(NSNumber *)localId {
+    Alarm *thisAlarm = [self getAlarmWithId:localId];
+    NSMutableArray *repeat = [thisAlarm repeat];
+    
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *todayComponents = [calendar components:NSWeekdayCalendarUnit|NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:[NSDate date]];
+    
+    NSDateComponents *weekdayComponents = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:[thisAlarm datetime]];
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    
+    [dateComps setDay:[todayComponents day]];
+    [dateComps setMonth:[todayComponents month]];
+    [dateComps setYear:[todayComponents year]];
+    
+    [dateComps setHour:[weekdayComponents hour]];
+    [dateComps setMinute:[weekdayComponents minute]];
+    NSDate *itemDate = [calendar dateFromComponents:dateComps];
+    
+    //Veckodag idag - 0 är måndag 6 är söndag
+    int weekday = [todayComponents weekday]-2; if (weekday == -1) weekday = 6;
+    
+    for (int i = 0; i < [repeat count]; i++) {
+        if ([[repeat objectAtIndex:i] intValue] == 1) {
+            int daysLeft = i-weekday;
+            if (daysLeft < 0) {
+                daysLeft+=7;
+            }
+            else if (daysLeft == 0) {
+                if ([[thisAlarm datetime] timeIntervalSinceDate:[NSDate date]] < 0)
+                    daysLeft += 7;
+            }
+            
+            NSDate *newDate = [itemDate dateByAddingTimeInterval:86400*daysLeft];
+            
+            UILocalNotification *alarmNotif = [[UILocalNotification alloc] init];
+            NSDictionary *infoDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[thisAlarm localId], [NSNumber numberWithInt:i], nil] forKeys:[NSArray arrayWithObjects:@"AlarmId", @"Weekday", nil]];
+            alarmNotif.repeatCalendar = calendar;
+            alarmNotif.repeatInterval = NSWeekCalendarUnit;
+            alarmNotif.fireDate = newDate;
+            NSLog(@"New date: %@", newDate);
+            alarmNotif.timeZone = [NSTimeZone defaultTimeZone];
+            alarmNotif.alertBody = @"Alarm";
+            alarmNotif.alertAction = NSLocalizedString(@"Turn off", nil);
+            alarmNotif.soundName = @"TestSound.wav";
+            alarmNotif.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber]+1;
+            alarmNotif.userInfo = infoDict;
+            [[UIApplication sharedApplication] scheduleLocalNotification:alarmNotif];
+        }
+    }
+}
+
+- (NSNumber *)addActionForAlarm:(NSNumber *)alarmId {
+    NSNumber *Id = 0;
+    
+    // Setup the database object
+	sqlite3 *database;
+    
+    int randomInt = arc4random() % 10000000 + 489823;
+    
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:@"INSERT INTO actions (telldusId, telldusName, offset, action, alarmId) VALUES (%i, '', 0, 'turnon', %i)", randomInt, [alarmId intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement;
+        sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL);
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+        }
+		sqlite3_finalize(compiledStatement);
+        
+        
+        // Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement2 = [[NSString stringWithFormat:@"SELECT * FROM actions WHERE telldusId = %i", randomInt] UTF8String];
+		sqlite3_stmt *compiledStatement2;
+		if(sqlite3_prepare_v2(database, sqlStatement2, -1, &compiledStatement2, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement2) == SQLITE_ROW) {
+                Id = [NSNumber numberWithInt:(int)sqlite3_column_int(compiledStatement2, 0)];
+                NSLog(@"ID: %@", Id);
+			}
+		}
+		sqlite3_finalize(compiledStatement2);
+        
+        const char *sqlStatement3 = [[NSString stringWithFormat:@"UPDATE actions SET telldusId = 0 WHERE id = %i", [Id intValue]] UTF8String];
+		sqlite3_stmt *compiledStatement3;
+		sqlite3_prepare_v2(database, sqlStatement3, -1, &compiledStatement3, NULL);
+        while(sqlite3_step(compiledStatement3) == SQLITE_ROW) {
+        }
+		sqlite3_finalize(compiledStatement3);
+	}
+	sqlite3_close(database);
+    
+    //Uppdatera alarmslistan
+    [self getActions];
+    NSLog(@"Actions: %@", actions);
     return Id;
 }
 

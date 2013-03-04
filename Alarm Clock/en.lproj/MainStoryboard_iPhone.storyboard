@@ -25,17 +25,11 @@
         <!--Main Clock View Controller-->
         <scene sceneID="bDv-5V-wr7">
             <objects>
-                <viewController id="ip8-aL-Ngh" customClass="MainClockViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainClockViewController" id="ip8-aL-Ngh" customClass="MainClockViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="02f-1D-pOQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="BlackBoard4.png" translatesAutoresizingMaskIntoConstraints="NO" id="QR2-2R-KmQ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="720" id="0yS-tP-dZb"/>
-                                    <constraint firstAttribute="width" constant="720" id="wPH-eh-5RJ"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3q2-Q2-o8G">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="27" id="fJ8-91-J1h"/>
@@ -67,7 +61,7 @@
                                     <constraint firstAttribute="height" constant="21" id="sHE-JL-vhy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
-                                <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.62386399872448983" green="0.25514892973064202" blue="0.26191919050196294" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="PM" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="c0m-MR-xgp">
@@ -75,7 +69,7 @@
                                     <constraint firstAttribute="width" constant="82" id="soE-Gd-MCa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
-                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00-00-00" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Txq-4D-mj0">
@@ -113,32 +107,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="QR2-2R-KmQ" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="-191" id="1qW-HP-ECL"/>
+                            <constraint firstAttribute="trailing" secondItem="c0m-MR-xgp" secondAttribute="trailing" constant="37" id="0KO-bc-Ub9"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="P8h-Gn-5O6" secondAttribute="bottom" constant="9" type="user" id="64f-Nr-kFF"/>
-                            <constraint firstItem="xel-BS-ZHg" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="24" id="9AW-T7-WKG"/>
                             <constraint firstItem="P8h-Gn-5O6" firstAttribute="baseline" secondItem="Gb8-OU-LfO" secondAttribute="baseline" type="user" id="9JR-MM-55A"/>
-                            <constraint firstItem="QR2-2R-KmQ" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="-19" id="BEP-Bk-sgO"/>
                             <constraint firstItem="Txq-4D-mj0" firstAttribute="top" secondItem="he9-SS-2yc" secondAttribute="top" type="default" id="BZ2-6L-QfT"/>
                             <constraint firstItem="3q2-Q2-o8G" firstAttribute="top" secondItem="Gb8-OU-LfO" secondAttribute="top" type="user" id="Cnf-h5-nbx"/>
                             <constraint firstAttribute="trailing" secondItem="P8h-Gn-5O6" secondAttribute="trailing" constant="-5" type="user" id="HBI-BK-Imb"/>
+                            <constraint firstItem="xel-BS-ZHg" firstAttribute="trailing" secondItem="3q2-Q2-o8G" secondAttribute="trailing" type="default" id="HGx-Rt-Ny6"/>
                             <constraint firstItem="c0m-MR-xgp" firstAttribute="baseline" secondItem="TDe-gk-2Z0" secondAttribute="baseline" type="default" id="KOU-Jv-v9V"/>
                             <constraint firstItem="TDe-gk-2Z0" firstAttribute="top" secondItem="c0m-MR-xgp" secondAttribute="top" type="default" id="NkR-pc-PpC"/>
-                            <constraint firstItem="Txq-4D-mj0" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="312" type="user" id="OnB-74-6LP"/>
+                            <constraint firstItem="Txq-4D-mj0" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="271" id="Qe4-iG-lCQ"/>
+                            <constraint firstItem="TDe-gk-2Z0" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="161" id="UFY-YC-oM3"/>
                             <constraint firstItem="P8h-Gn-5O6" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="117" type="user" id="Y9a-9Y-mtv"/>
+                            <constraint firstItem="xel-BS-ZHg" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="83" id="b5N-Pr-gVY"/>
                             <constraint firstAttribute="bottom" secondItem="P8h-Gn-5O6" secondAttribute="bottom" constant="9" type="user" id="bnM-5m-IDt"/>
-                            <constraint firstItem="TDe-gk-2Z0" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="202" id="hD0-E9-Ucy"/>
+                            <constraint firstItem="xel-BS-ZHg" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="29" id="gGo-9e-HOr"/>
                             <constraint firstItem="P8h-Gn-5O6" firstAttribute="bottom" secondItem="3q2-Q2-o8G" secondAttribute="bottom" type="default" id="kXg-0h-7w8"/>
+                            <constraint firstItem="TDe-gk-2Z0" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="51" id="lh4-ZR-RJm"/>
                             <constraint firstItem="Txq-4D-mj0" firstAttribute="bottom" secondItem="he9-SS-2yc" secondAttribute="bottom" type="default" id="mXc-MI-GDT"/>
-                            <constraint firstAttribute="trailing" secondItem="c0m-MR-xgp" secondAttribute="trailing" constant="42" id="nHJ-Bn-f7y"/>
-                            <constraint firstAttribute="trailing" secondItem="3q2-Q2-o8G" secondAttribute="trailing" constant="11" id="rTh-VK-w1g"/>
                             <constraint firstItem="Gb8-OU-LfO" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="11" id="rzf-5w-kyy"/>
-                            <constraint firstItem="TDe-gk-2Z0" firstAttribute="leading" secondItem="02f-1D-pOQ" secondAttribute="leading" constant="46" id="uuS-1y-m0g"/>
                             <constraint firstItem="Txq-4D-mj0" firstAttribute="leading" secondItem="TDe-gk-2Z0" secondAttribute="leading" type="default" id="vG9-u2-IcC"/>
                             <constraint firstItem="he9-SS-2yc" firstAttribute="trailing" secondItem="c0m-MR-xgp" secondAttribute="trailing" type="default" id="vZl-3X-78B"/>
                             <constraint firstItem="P8h-Gn-5O6" firstAttribute="top" secondItem="3q2-Q2-o8G" secondAttribute="top" type="user" id="w6A-to-DUL"/>
-                            <constraint firstItem="xel-BS-ZHg" firstAttribute="top" secondItem="02f-1D-pOQ" secondAttribute="top" constant="124" id="y6D-z0-keZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VMU-nL-GYa"/>
@@ -470,6 +462,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpU-GZ-Lrs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2254" y="-1473"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yd4-xS-T9G">
+            <objects>
+                <navigationController storyboardIdentifier="AlarmNavigationController" definesPresentationContext="YES" navigationBarHidden="YES" id="xxH-me-QcT" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VcG-R4-XO4">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="j2S-xX-4yU" kind="relationship" relationship="rootViewController" id="Gwm-yj-rGd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFh-Mw-Rl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-216" y="-1136"/>
+        </scene>
+        <!--Alarm View Controller-->
+        <scene sceneID="D02-h9-iAX">
+            <objects>
+                <viewController storyboardIdentifier="AlarmViewController" id="j2S-xX-4yU" customClass="AlarmViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jyh-qv-9VT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9N-1l-2Qr">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Turn off">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="turnOffButtonPressed:" destination="j2S-xX-4yU" eventType="touchUpInside" id="BLq-ZB-5Qc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdD-vP-Syu">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Snooze">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="snoozeButtonPressed:" destination="j2S-xX-4yU" eventType="touchUpInside" id="BGl-xA-XVN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="13:37" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DT-83-Vgn">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="D10-g8-GsI"/>
+                                    <constraint firstAttribute="height" constant="105" id="h4J-vM-0Mh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v9N-1l-2Qr" firstAttribute="leading" secondItem="jyh-qv-9VT" secondAttribute="leading" constant="55" id="70c-mj-l3R"/>
+                            <constraint firstAttribute="bottom" secondItem="v9N-1l-2Qr" secondAttribute="bottom" constant="91" id="CwP-xt-GBu"/>
+                            <constraint firstItem="9DT-83-Vgn" firstAttribute="top" secondItem="jyh-qv-9VT" secondAttribute="top" constant="101" id="Z1e-Jh-YqT"/>
+                            <constraint firstAttribute="trailing" secondItem="IdD-vP-Syu" secondAttribute="trailing" constant="50" id="aQ5-I5-mga"/>
+                            <constraint firstItem="IdD-vP-Syu" firstAttribute="baseline" secondItem="v9N-1l-2Qr" secondAttribute="baseline" type="default" id="mVE-BD-FeU"/>
+                            <constraint firstItem="9DT-83-Vgn" firstAttribute="centerX" secondItem="jyh-qv-9VT" secondAttribute="centerX" type="default" id="zam-WN-TYU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="E2O-pN-jea"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="timeLabel" destination="9DT-83-Vgn" id="j9a-GT-Sig"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BjS-JN-mIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304" y="-1136"/>
         </scene>
         <!--Alarm List View Controller-->
         <scene sceneID="aiV-XR-ykO">
@@ -886,7 +960,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <constraint firstAttribute="width" constant="59" id="J6Q-cf-nkV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Back">
+                                <state key="normal" title="Save">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -948,7 +1022,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="A5b-X3-mvs" firstAttribute="leading" secondItem="A4w-bZ-V6u" secondAttribute="leading" type="default" id="3q0-0P-qOk"/>
                             <constraint firstItem="YCB-3U-3If" firstAttribute="leading" secondItem="A58-3E-Gpi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="5Q1-ZQ-8NG"/>
                             <constraint firstItem="LLg-Wj-RVP" firstAttribute="top" secondItem="tIC-96-hPV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6sK-Hy-NGa"/>
-                            <constraint firstItem="YCB-3U-3If" firstAttribute="baseline" secondItem="A58-3E-Gpi" secondAttribute="baseline" type="default" id="9S7-8p-grH"/>
                             <constraint firstItem="A5b-X3-mvs" firstAttribute="top" secondItem="A4w-bZ-V6u" secondAttribute="top" type="default" id="FDY-cb-SuU"/>
                             <constraint firstItem="LLg-Wj-RVP" firstAttribute="bottom" secondItem="A4w-bZ-V6u" secondAttribute="bottom" type="default" id="RbD-VP-v2H"/>
                             <constraint firstAttribute="trailing" secondItem="tIC-96-hPV" secondAttribute="trailing" constant="8" id="THO-A1-PFA"/>
@@ -1269,7 +1342,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="BlackBoard4.png" width="960" height="960"/>
         <image name="arrow.png" width="40" height="40"/>
     </resources>
     <classes>
@@ -1280,6 +1352,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="doneButtonPressed:"/>
                 <relationship kind="action" name="toggleSwitchToggled:"/>
                 <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AlarmViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlarmViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="snoozeButtonPressed:"/>
+                <relationship kind="action" name="turnOffButtonPressed:"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="EditAlarmActionsViewController" superclassName="UIViewController">

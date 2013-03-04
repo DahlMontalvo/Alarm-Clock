@@ -68,6 +68,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [[self.navigationController navigationBar] setHidden:YES];
     [self performSelector:@selector(updateClock) withObject:nil afterDelay:0];
 	clockUpdater = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                     target:self

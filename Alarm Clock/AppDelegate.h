@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "OAuthConsumer.h"
 #import <sqlite3.h>
-#include "Alarm.h"
-#include "TelldusAction.h"
+#import "Alarm.h"
+#import "TelldusAction.h"
+#import "AlarmViewController.h"
+//#include "MainClockViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSString *databaseName;
@@ -24,11 +26,15 @@
 @property (nonatomic, retain) NSMutableArray *alarms;
 @property (nonatomic, retain) NSMutableArray *actions;
 
-- (Alarm *)getAlarmWithId:(NSNumber *)alarmLocalId;
-- (void)deleteAlarmWithId:(NSNumber *)alarmLocalId;
-- (NSNumber *)addAlarm;
-- (void)getAlarms;
-- (void)updateAlarmWithId:(NSNumber *)localId name:(NSString *)name datetime:(NSDate *)date active:(NSNumber *)active repeat:(NSMutableArray *)repeat;
-- (void)setActive:(NSNumber *)a forAlarmWithId:(NSNumber *)i;
+-(Alarm *)getAlarmWithId:(NSNumber *)alarmLocalId;
+-(TelldusAction *)getTelldusActionWithId:(NSNumber *)actionLocalId;
+-(void)deleteAlarmWithId:(NSNumber *)alarmLocalId;
+-(void)deleteActionWithId:(NSNumber *)actionLocalId;
+-(NSNumber *)addAlarm;
+-(NSNumber *)addActionForAlarm:(NSNumber *)alarmId;
+-(void)getAlarms;
+-(void)getActions;
+-(void)updateAlarmWithId:(NSNumber *)localId name:(NSString *)name datetime:(NSDate *)date active:(NSNumber *)active repeat:(NSMutableArray *)repeat;
+-(void)setActive:(NSNumber *)a forAlarmWithId:(NSNumber *)i;
 
 @end
