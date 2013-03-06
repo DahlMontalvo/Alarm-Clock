@@ -131,6 +131,7 @@
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Repeat", @"RepeatSegue", @"DetailDisclosure", @"_ _ _ _ _ _ _ _", nil]];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Signal", @"SignalSegue", @"DetailDisclosure", @"Default", nil]];
     [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Tellstick Actions", @"ActionsSegue", @"Disclosure", [NSString stringWithFormat:@"%i", [[appDelegate actions] count]], nil]];
+    [[group1 objectAtIndex:1] addObject:[[NSMutableArray alloc] initWithObjects:@"Snooze", @"SnoozeSegue", @"Disclosure", [NSString stringWithFormat:@"%i times %i min", 2, 5, nil], nil]];
     [settings addObject:group1];
     [self updateRepeatLabel];
     [tableViewOutlet reloadData];

@@ -807,11 +807,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Time" textLabel="UI6-F5-5Fo" detailTextLabel="fIp-l2-WGC" style="IBUITableViewCellStyleValue1" id="m6m-FP-cdN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Time" textLabel="UI6-F5-5Fo" detailTextLabel="fIp-l2-WGC" style="IBUITableViewCellStyleValue1" id="m6m-FP-cdN">
                                         <rect key="frame" x="0.0" y="135" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-F5-5Fo">
@@ -925,6 +925,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="tapRecognizer" destination="wyh-hi-Rsg" id="hPv-oP-T6J"/>
                         <segue destination="Vbc-Pp-eBs" kind="push" identifier="ActionsSegue" id="mWV-oX-oUS"/>
                         <segue destination="2gj-g8-uYn" kind="push" identifier="RepeatSegue" id="wty-dE-Ei3"/>
+                        <segue destination="ay5-TM-hZw" kind="push" identifier="SnoozeSegue" id="lWJ-wH-Rfh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lKO-6U-6c2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1131,6 +1132,98 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nQ-Y2-9dx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1921" y="660"/>
+        </scene>
+        <!--Edit Alarm Snooze View Controller-->
+        <scene sceneID="nf2-4I-dPf">
+            <objects>
+                <viewController id="ay5-TM-hZw" customClass="EditAlarmSnoozeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qj4-59-4Rn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pr5-E7-Yeo">
+                                <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8ew-em-Snt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Snooze" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5d-p4-KoS">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="171" id="Jbx-0C-yPN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4R7-a5-UiJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="gtH-dR-bse"/>
+                                    <constraint firstAttribute="height" constant="32" id="xjr-rF-SsR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="kbf-ZN-gTL" eventType="touchUpInside" id="r4I-76-zgI"/>
+                                    <action selector="cancelButtonPressed:" destination="ay5-TM-hZw" eventType="touchUpInside" id="swA-Sm-s5i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-8a-Jsa">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="CZh-Su-VaF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="ay5-TM-hZw" eventType="touchUpInside" id="WZH-aX-YRj"/>
+                                    <action selector="saveButtonPressed:" destination="kbf-ZN-gTL" eventType="touchUpInside" id="vSW-G6-CN0"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bFT-J4-xgl">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="518" type="user" id="Qsb-w2-7xR"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="ay5-TM-hZw" id="dvD-of-2Zj"/>
+                                    <outlet property="delegate" destination="ay5-TM-hZw" id="ubN-ey-mrg"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4R7-a5-UiJ" firstAttribute="leading" secondItem="qj4-59-4Rn" secondAttribute="leading" constant="7" id="1aB-kO-qf1"/>
+                            <constraint firstItem="4R7-a5-UiJ" firstAttribute="top" secondItem="qWO-8a-Jsa" secondAttribute="top" type="default" id="4bJ-4M-ff0"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="top" secondItem="qj4-59-4Rn" secondAttribute="top" constant="50" type="user" id="76M-8b-RCZ"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="top" secondItem="4R7-a5-UiJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NLR-Zh-j6J"/>
+                            <constraint firstItem="pr5-E7-Yeo" firstAttribute="top" secondItem="qj4-59-4Rn" secondAttribute="top" type="default" id="OOc-Pm-S8B"/>
+                            <constraint firstItem="pr5-E7-Yeo" firstAttribute="trailing" secondItem="qj4-59-4Rn" secondAttribute="trailing" type="default" id="PdO-E7-mwt"/>
+                            <constraint firstItem="qWO-8a-Jsa" firstAttribute="leading" secondItem="M5d-p4-KoS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Stl-tw-Glc"/>
+                            <constraint firstItem="M5d-p4-KoS" firstAttribute="top" secondItem="qj4-59-4Rn" secondAttribute="top" constant="14" id="ZLI-I2-3Z4"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="trailing" secondItem="qj4-59-4Rn" secondAttribute="trailing" type="default" id="fjb-vz-uQL"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="top" secondItem="qWO-8a-Jsa" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ggT-WD-7hH"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="leading" secondItem="qj4-59-4Rn" secondAttribute="leading" type="default" id="iql-5N-shu"/>
+                            <constraint firstItem="M5d-p4-KoS" firstAttribute="leading" secondItem="4R7-a5-UiJ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="kOi-2V-MUi"/>
+                            <constraint firstItem="pr5-E7-Yeo" firstAttribute="leading" secondItem="qj4-59-4Rn" secondAttribute="leading" type="default" id="mqV-5M-h3a"/>
+                            <constraint firstItem="bFT-J4-xgl" firstAttribute="bottom" secondItem="qj4-59-4Rn" secondAttribute="bottom" type="user" id="mv4-uw-fPh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8wh-Yn-JfD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fia-rN-Bws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1478" y="1014"/>
         </scene>
         <!--Edit Alarm Edit Action View Controller-->
         <scene sceneID="k2y-sH-ild">
@@ -1344,100 +1437,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="arrow.png" width="40" height="40"/>
     </resources>
-    <classes>
-        <class className="AlarmListViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlarmListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addButtonPressed:"/>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="action" name="toggleSwitchToggled:"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AlarmViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlarmViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="snoozeButtonPressed:"/>
-                <relationship kind="action" name="turnOffButtonPressed:"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EditAlarmActionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditAlarmActionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addButtonPressed:"/>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EditAlarmEditActionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditAlarmEditActionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="action" name="stepperChanged:"/>
-                <relationship kind="action" name="textFieldChanged:"/>
-                <relationship kind="outlet" name="finalizeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="tapRecognizer" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="EditAlarmRepeatViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditAlarmRepeatViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EditAlarmViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditAlarmViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="action" name="datePickerChanged:"/>
-                <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="action" name="textFieldDidChange:"/>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="tapRecognizer" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="MainClockViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainClockViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="ampmDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dayDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nextAlarmLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="secondsDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SettingsAuthorizeTelldusLiveViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsAuthorizeTelldusLiveViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="SettingsTelldusLiveViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTelldusLiveViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

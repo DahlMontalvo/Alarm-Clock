@@ -63,7 +63,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+ 
 - (IBAction)turnOffButtonPressed:(id)sender {
     [audioPlayer stop];
     NSLog(@"Stäng av");

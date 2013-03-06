@@ -296,27 +296,35 @@
                 daysLeft+=7;
             }
             else if (daysLeft == 0) {
-                if ([[thisAlarm datetime] timeIntervalSinceDate:[NSDate date]] < 0)
+                if ([itemDate timeIntervalSinceDate:[NSDate date]] < 0)
                     daysLeft += 7;
             }
             
             NSDate *newDate = [itemDate dateByAddingTimeInterval:86400*daysLeft];
             
-            UILocalNotification *alarmNotif = [[UILocalNotification alloc] init];
             NSDictionary *infoDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[thisAlarm localId], [NSNumber numberWithInt:i], nil] forKeys:[NSArray arrayWithObjects:@"AlarmId", @"Weekday", nil]];
-            alarmNotif.repeatCalendar = calendar;
-            alarmNotif.repeatInterval = NSWeekCalendarUnit;
-            alarmNotif.fireDate = newDate;
-            NSLog(@"New date: %@", newDate);
-            alarmNotif.timeZone = [NSTimeZone defaultTimeZone];
-            alarmNotif.alertBody = @"Alarm";
-            alarmNotif.alertAction = NSLocalizedString(@"Turn off", nil);
-            alarmNotif.soundName = @"TestSound.wav";
-            alarmNotif.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber]+1;
-            alarmNotif.userInfo = infoDict;
-            [[UIApplication sharedApplication] scheduleLocalNotification:alarmNotif];
+            
+            [self createLocalNotifsWithFirstDate:newDate andSnoozeIntervalInMinutes:[thisAlarm snoozeInterval] snoozeTimes:[thisAlarm snoozeTimes] infoDict:infoDict];
         }
     }
+}
+
+- (void) createLocalNotifsWithFirstDate:(NSDate *)date andSnoozeIntervalInMinutes:(int)snoozeInterval snoozeTimes:(int)snoozeTimes infoDict:(NSDictionary *)infoDict {
+    for (int i = 0; i <= snoozeTimes; i++) {
+        UILocalNotification *alarmNotif = [[UILocalNotification alloc] init];
+        NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+        alarmNotif.repeatCalendar = calendar;
+        alarmNotif.repeatInterval = NSWeekCalendarUnit;
+        alarmNotif.fireDate = [date dateByAddingTimeInterval:60*snoozeInterval*i];
+        alarmNotif.timeZone = [NSTimeZone defaultTimeZone];
+        alarmNotif.alertBody = @"Alarm";
+        alarmNotif.alertAction = NSLocalizedString(@"Turn off", nil);
+        alarmNotif.soundName = @"TestSound.wav";
+        alarmNotif.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber]+1;
+        alarmNotif.userInfo = infoDict;
+        [[UIApplication sharedApplication] scheduleLocalNotification:alarmNotif];
+    }
+    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (NSNumber *)addActionForAlarm:(NSNumber *)alarmId {

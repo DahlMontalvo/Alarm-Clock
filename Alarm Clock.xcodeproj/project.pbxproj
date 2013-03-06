@@ -10,6 +10,7 @@
 		DD06650A16E3F2190032D364 /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD06650916E3F2190032D364 /* AlarmViewController.m */; };
 		DD06650C16E496F70032D364 /* TestSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = DD06650B16E496F70032D364 /* TestSound.wav */; };
 		DD06650E16E498900032D364 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06650D16E498900032D364 /* AVFoundation.framework */; };
+		DD06651116E776E60032D364 /* EditAlarmSnoozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD06651016E776E60032D364 /* EditAlarmSnoozeViewController.m */; };
 		DD814ADF16D948800009F0DB /* AlarmClock.sql in Resources */ = {isa = PBXBuildFile; fileRef = DD814ADE16D948800009F0DB /* AlarmClock.sql */; };
 		DD814AE116D948D50009F0DB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */; };
 		DD814AE416D94C3D0009F0DB /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = DD814AE316D94C3D0009F0DB /* Alarm.m */; };
@@ -80,6 +81,8 @@
 		DD06650916E3F2190032D364 /* AlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmViewController.m; sourceTree = "<group>"; };
 		DD06650B16E496F70032D364 /* TestSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TestSound.wav; sourceTree = "<group>"; };
 		DD06650D16E498900032D364 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DD06650F16E776E60032D364 /* EditAlarmSnoozeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmSnoozeViewController.h; sourceTree = "<group>"; };
+		DD06651016E776E60032D364 /* EditAlarmSnoozeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmSnoozeViewController.m; sourceTree = "<group>"; };
 		DD814ADE16D948800009F0DB /* AlarmClock.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmClock.sql; sourceTree = "<group>"; };
 		DD814AE016D948D50009F0DB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DD814AE216D94C3D0009F0DB /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				DDBB9E4916D8C95600F3D688 /* EditAlarmActionsViewController.m */,
 				DDBB9E4B16D8CF0900F3D688 /* EditAlarmEditActionViewController.h */,
 				DDBB9E4C16D8CF0900F3D688 /* EditAlarmEditActionViewController.m */,
+				DD06650F16E776E60032D364 /* EditAlarmSnoozeViewController.h */,
+				DD06651016E776E60032D364 /* EditAlarmSnoozeViewController.m */,
 			);
 			name = "Edit Alarm";
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				DD814AE716DA269F0009F0DB /* EditAlarmRepeatViewController.m in Sources */,
 				DDA627FC16DA8F110054BB8B /* TelldusAction.m in Sources */,
 				DD06650A16E3F2190032D364 /* AlarmViewController.m in Sources */,
+				DD06651116E776E60032D364 /* EditAlarmSnoozeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
